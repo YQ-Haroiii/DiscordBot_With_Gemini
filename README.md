@@ -76,6 +76,7 @@ npm install @google/generative-ai
 裡面怎麼訓練你家的事
 畫表格吧
 | 資料檔 | 對應意思 |
+| ------------- | ------------- |
 | Category_chat_prompt.txt | 分類用系統提示詞 |
 | Category_prompt.txt | 分類用數據 |
 | Chat_prompt.txt | 每次聊天時，會調用的提示詞 |
@@ -86,6 +87,7 @@ npm install @google/generative-ai
 你可以找出規律自己修改
 一樣畫表格
 | 檔案 | 功能 |
+| ------------- | ------------- |
 | Category_permissions.json | 這個是權限設定，後續再說 |
 | Category_Train.json | 分類訓練，可以自己調整 |
 | Chat_Train.json | 對話訓練，可以自己調整，底下的參數等下會說 |
@@ -93,6 +95,7 @@ npm install @google/generative-ai
 # 權限，參數
 OK，說說權限吧，先畫上表格
 | 權限 | 功能 |
+| ------------- | ------------- |
 | 資料 | 讀取資料(目前版本沒有研究，後續的) |
 | 生日 | 取得機器人生日。config 中 bot_setting.birthday 參數 |
 | 時間 | 會取得你電腦的時間 |
@@ -109,6 +112,7 @@ category 是 分類，他會使訓練紀錄的格式統一標準化
 other_param 是其他參數
 
 | 其他參數 | 意義 |
+| ------------- | ------------- |
 | data | 如果沒有資料，no_data |
 | time | 給機器人一個模擬時間 |
 | is_Developer | 這是要模擬開發者回應嗎? |
