@@ -1,0 +1,31 @@
+{
+    "discord":{
+        "token": "Discord Token",
+        "client_id": "Discord Client ID"
+    },
+    "gemini":{
+        "token": "Gemini Token"
+    },
+    "bot_setting":{
+        "name":"機器人名稱",
+        "birthday": "機器人生日",
+        "personality": "機器人個性",
+        "gender": "機器人性別",
+        "profession": "機器人職業",
+        "hobby": "機器人興趣",
+        "like": "機器人喜歡的事物",
+        "language": [
+            "繁體中文"
+        ]
+    },
+    "global_setting":{
+        "prompt_strength": "機器人prompt強度，1~0.1 越高越強",
+        "chat_history": "機器人聊天紀錄筆數",
+        "nsfw": "是否開啟機器人nsfw功能",
+        "nsfw_all" : "是否開啟機器人對全使用者nsfw功能",
+        "reference": "是否開啟機器人回應功能"
+    },
+    "developer":{
+        "id":"機器人開發者ID"
+    }
+}
