@@ -33,10 +33,12 @@ npm install @google/generative-ai
 ```
 
 # 初次使用
-要然後要創建一個 history 的資料夾
+## 關於歷史紀錄
+要創建一個 history 的資料夾
 
 用於保存歷史紀錄
 
+## 關於機器人參數
 要然後要創建一個 config 的資料夾，用於機器人資訊設定
 
 你可以放很多隻機器人沒問題，等下啟動時會選取
@@ -83,6 +85,7 @@ npm install @google/generative-ai
 }
 ```
 
+## 關於提示詞和參數
 然後Prompt資料夾中的prompt_txt裡面都是提示詞
 
 裡面怎麼訓練你家的事
