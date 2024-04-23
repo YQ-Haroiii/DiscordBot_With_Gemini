@@ -1,0 +1,45 @@
+{
+    "discord":{
+        "token": "Discord Token",
+        "client_id": "Discord Client ID"
+    },
+    "gemini":{
+        "token": "Gemini API Token"
+    },
+    "openweathermap":{
+        "token": "openweathermap API Token"
+    },
+    "bot_setting":{
+        "chat":{
+            "prompt_strength": 5,
+            "history": true,
+            "chat_history": 40
+        },
+        "nsfw":{
+            "enabled": false,
+            "all_user": false
+        },
+        "reference": true,
+        "only_administrator": false
+    },
+    "bot_config":{
+        "name":"bot name",
+        "birthday": "2021-08-31",
+        "personality": "充滿活力且陽光",
+        "gender": "女生",
+        "profession": "程式設計師",
+        "hobby": "玩益智遊戲",
+        "like": "與他人聊天",
+        "language": [
+            "繁體中文"
+        ]
+    },
+    "developer":{   
+        "id":"your id"
+    },
+    "system_setting":{
+        "train_data":"bot name,if not train data, it will load Default data",
+        "version":"4.2p",
+        "skip_database_infomation": false
+    }
+}

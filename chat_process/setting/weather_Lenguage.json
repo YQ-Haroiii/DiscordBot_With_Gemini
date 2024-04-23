@@ -1,0 +1,74 @@
+[
+    {
+        "zh_name" : "台北",
+        "en_name" : "Taipei"
+    },
+    {
+        "zh_name" : "台中",
+        "en_name" : "Taichung"
+    },
+    {
+        "zh_name" : "台南",
+        "en_name" : "Tainan"
+    },
+    {
+        "zh_name" : "高雄",
+        "en_name" : "Kaohsiung"
+    },
+    {
+        "zh_name" : "基隆",
+        "en_name" : "Keelung"
+    },
+    {
+        "zh_name" : "新北",
+        "en_name" : "New Taipei"
+    },
+    {
+        "zh_name" : "桃園",
+        "en_name" : "Taoyuan"
+    },
+    {
+        "zh_name" : "新竹",
+        "en_name" : "Hsinchu"
+    },
+    {
+        "zh_name" : "苗栗",
+        "en_name" : "Miaoli"
+    },
+    {
+        "zh_name" : "彰化",
+        "en_name" : "Changhua"
+    },
+    {
+        "zh_name" : "南投",
+        "en_name" : "Nantou"
+    },
+    {
+        "zh_name" : "雲林",
+        "en_name" : "Yunlin"
+    },
+    {
+        "zh_name" : "嘉義",
+        "en_name" : "Chiayi"
+    },
+    {
+        "zh_name" : "屏東",
+        "en_name" : "Pingtung"
+    },
+    {
+        "zh_name" : "花蓮",
+        "en_name" : "Hualien"
+    },
+    {   
+        "zh_name" : "金門",
+        "en_name" : "Kinmen"
+    },
+    {
+        "zh_name" : "澎湖",
+        "en_name" : "Penghu"
+    },
+    {
+        "zh_name" : "連江",
+        "en_name" : "Lienchiang"
+    }
+]

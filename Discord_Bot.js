@@ -23,7 +23,7 @@ const client = new Client({
 });
 
 //預設一個config檔案，用於除錯
-let config = require('./_SYSTEM_EXAMPLE/config.json');
+let config = require('./Test_config.json').Test_config;
 
 //把機器人的需要的資訊，設定成一個空陣列
 let bot_info = {};
@@ -34,7 +34,7 @@ client.on('ready', async () => {
     console.clear();
 
     //顯示機器人資訊
-    console.log('Haroiii Ai Tech Version 4.1P');
+    console.log('Haroiii Ai Tech Version 4.2P');
     console.log('Build With 「Discord.js」 & 「Google Gemini」');
     console.log('Discord.js Version: 14');
     console.log('Google Gemini Version: Pro 1.0');
@@ -46,15 +46,15 @@ client.on('ready', async () => {
     load_bot_setting();
 
     //顯示機器人資訊
-    console.log('Name: ' + bot_info.setting.name);
+    console.log('Name: ' + bot_info.bot_config.name);
     console.log('Developer ID: ' + bot_info.developer.id);
-    console.log('Developer Tag: ' + bot_info.developer.tag);
+    console.log('Developer Name: ' + bot_info.developer.name);
 
     //設定機器人狀態
     client.user.setPresence({
         status: 'online',
         activities: [{
-            name: "請使用 " + bot_info.setting.name + " 來呼叫我呦",
+            name: "請使用 " + bot_info.bot_config.name + " 來呼叫我呦",
             type: ActivityType.Custom
         }]
     })
@@ -72,13 +72,13 @@ client.on('messageCreate', async (message) => {
     let message_reference_id = null;
 
     //檢查回應
-    if(message.reference != null && bot_info.global_setting.reference) {
+    if(message.reference != null && bot_info.bot_setting.reference) {
         const reference_message = await message.channel.messages.fetch(message.reference.messageId);
         message_reference_id = reference_message.author.id;
     }
 
     //在10字元以內呼叫機器人都有用，或者回應機器人都有用
-    if((message.content.indexOf(bot_info.setting.name) >= 0 && message.content.indexOf(bot_info.setting.name) <= 10) || message_reference_id == config.discord.client_id) {
+    if((message.content.indexOf(bot_info.bot_config.name) >= 0 && message.content.indexOf(bot_info.bot_config.name) <= 10) || message_reference_id == config.discord.client_id) {
         //取得mention的人
         let mention = [];
         message.mentions.users.forEach((user) => {
@@ -95,11 +95,13 @@ client.on('messageCreate', async (message) => {
             new_message_content = new_message_content.replaceAll("<@"+mention[i].user_id+">", "「" + mention[i].user_tag + "」");
         }
 
+        console.log(mention);
+
         //回應參數，用於告訴機器人使用者是否有用回應
         let reference_content = null;
 
         //重點回應功能，先檢查使用者是否回應喵蔥
-        if(message.reference != null && bot_info.global_setting.reference) {
+        if(message.reference != null && bot_info.bot_setting.reference) {
             const reference_message = await message.channel.messages.fetch(message.reference.messageId);
             if(reference_message.author.id == config.discord.client_id) {
                 reference_content = reference_message.content;
@@ -108,22 +110,24 @@ client.on('messageCreate', async (message) => {
 
         //建立一個訊息資訊
         let message_info = {
-            user_id: message.author.id,
-            user_name: message.author.globalName,
+            id: message.author.id,
+            name: message.author.globalName,
             server_id: message.guild.id,
-            input: new_message_content,
+            content: new_message_content,
             reference: reference_content
         };
 
 
         //系統提示詞
-        const Gemini_New_Chat = require('./Gemini_result_output.js');
+        const Ai_New_Chat = require('./Output_result.js');
 
         //取得結果
-        const result_output = await Gemini_New_Chat.new_chat(bot_info, message_info);
+        const result_output = await Ai_New_Chat.Process_input(config, message_info);
 
         //執行系統提示詞
-        message.reply(result_output);
+        try {
+            await message.reply(result_output);
+        } catch (error) {}
     }
 })
 
@@ -133,32 +137,10 @@ function load_bot_setting() {
     const developer_tag = client.users.cache.get(config.developer.id);
 
     //機器人所需資訊
-    bot_info = {
-        setting: {
-            name: config.bot_setting.name,
-            birthday: config.bot_setting.birthday,
-            personality: config.bot_setting.personality,
-            gender: config.bot_setting.gender,
-            profession: config.bot_setting.profession,
-            hobby: config.bot_setting.hobby,
-            like: config.bot_setting.like,
-            language: config.bot_setting.language
-        },
-        global_setting: {
-            prompt_strength: config.global_setting.prompt_strength,
-            chat_history: config.global_setting.chat_history,
-            nsfw: config.global_setting.nsfw,
-            nsfw_all : config.global_setting.nsfw_all,
-            reference: config.global_setting.reference
-        },
-        gemini: {
-            token: config.gemini.token
-        },
-        developer: {
-            id: config.developer.id,
-            tag: developer_tag.username
-        }
-    };
+    bot_info = config;
+
+    //最後的開發者名稱
+    bot_info.developer.name = developer_tag.globalName;
 }
 
 //選擇式啟動function
@@ -172,10 +154,19 @@ function start() {
         process.exit(0);
     }
 
+    //新增一個不包含提示的陣列
+    let __new_files = [];
+
+    for(let i = 0; i < __all_files.length; i++) {
+        if(__all_files[i].includes("Null") != true) {
+            __new_files[__new_files.length] = __all_files[i];
+        }
+    }
+
     //顯示config資料夾中的所有檔案
     console.log("On config folder: ");
-    for(i = 0; i < __all_files.length; i++) {
-        console.log((i + 1) + ' : ' + __all_files[i]);
+    for(i = 0; i < __new_files.length; i++) {
+        console.log((i + 1) + ' : ' + __new_files[i].replaceAll('_Config.json', ''));
     }
 
     //讓使用者選擇檔案
@@ -187,7 +178,7 @@ function start() {
         }
 
         //讀取選擇的檔案
-        config = require('./config/' + __all_files[answer - 1]);
+        config = require('./config/' + __new_files[answer - 1]);
 
         //登入機器人
         client.login(config.discord.token);
